@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class Card_GameManager : MonoBehaviour
 {
@@ -18,13 +19,19 @@ public class Card_GameManager : MonoBehaviour
     private List<GameObject> CardObjs;
     private List<Card> FaceCards;
 
+    [Header( "Set Dynamically" )]
+    public Text scoreGT;
+    public int score;
+
     // Use this for initialization
     void Start()
     {
 
         CardObjs = new List<GameObject>();
         FaceCards = new List<Card>();
-
+        GameObject scoreGO = GameObject.Find("ScoreCounter");
+        scoreGT = scoreGO.GetComponent<Text>();
+        scoreGT.text = "Matches: " + score.ToString();
 
         for (int i = 0; i < 6; i++)
         {
@@ -89,6 +96,10 @@ public class Card_GameManager : MonoBehaviour
             card1.SetSuccess();
             card2.SetSuccess();
             curCardCouples++;
+
+            score++;
+            scoreGT.text = "Matches: " + score.ToString();
+
             if (curCardCouples == winCardCouples)
             {
                 //winning text
