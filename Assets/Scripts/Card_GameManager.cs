@@ -23,6 +23,9 @@ public class Card_GameManager : MonoBehaviour
     public Text scoreGT;
     public int score;
 
+    public GameObject videoPlayer;
+    public float timeToStop;
+
     // Use this for initialization
     void Start()
     {
@@ -32,6 +35,8 @@ public class Card_GameManager : MonoBehaviour
         GameObject scoreGO = GameObject.Find("ScoreCounter");
         scoreGT = scoreGO.GetComponent<Text>();
         scoreGT.text = "Matches: " + score.ToString();
+
+        videoPlayer.SetActive(false);
 
         for (int i = 0; i < 6; i++)
         {
@@ -64,7 +69,6 @@ public class Card_GameManager : MonoBehaviour
         }
     }
 
-
     private void CardOnClick(Card card)
     {
         if (canPlayerClick)
@@ -81,9 +85,6 @@ public class Card_GameManager : MonoBehaviour
             }
         }
     }
-
-
-  
 
     IEnumerator JugdeTwoCards()
     {
@@ -109,6 +110,9 @@ public class Card_GameManager : MonoBehaviour
                 Debug.Log("End!");
                 endFade.SetActive(true);
             }
+
+            StartCoroutine(playVideo());
+
         }
         else
         {
@@ -121,6 +125,13 @@ public class Card_GameManager : MonoBehaviour
 
         FaceCards = new List<Card>();
         canPlayerClick = true;
+    }
+
+    IEnumerator playVideo()
+    {
+        videoPlayer.SetActive(true);
+        yield return new WaitForSeconds(timeToStop);
+        videoPlayer.SetActive(false);
     }
 }
 
