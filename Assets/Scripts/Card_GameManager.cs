@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Card_GameManager : MonoBehaviour
 {
     public GameObject endFade;
-    private const int winCardCouples = 6;
+    private int winCardCouples = 6;
     private int curCardCouples = 0;
     private bool canPlayerClick = true;
 
