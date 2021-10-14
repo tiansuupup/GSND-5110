@@ -28,7 +28,7 @@ public class Preface : MonoBehaviour {
 
     private void Fade()
     {
-        float delta = 0.003f;
+        float delta = 0.005f;
 
         rawImg.color = Color.Lerp( rawImg.color, Color.clear, delta * (1.001f - rawImg.color.a) );
 

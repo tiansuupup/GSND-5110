@@ -34,7 +34,7 @@ public class Card : MonoBehaviour
         cardBtn = GetComponent<Button>();
     }
 
-    public void SetFanPai()
+    public void SetFlip()
     {
         showImg.sprite = frontImg;
         cardBtn.interactable = false;

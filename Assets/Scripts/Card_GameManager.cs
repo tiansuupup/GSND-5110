@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Card_GameManager : MonoBehaviour
 {
-
+    public GameObject endFade;
     private const int winCardCouples = 6;
     private int curCardCouples = 0;
     private bool canPlayerClick = true;
@@ -70,7 +70,7 @@ public class Card_GameManager : MonoBehaviour
         if (canPlayerClick)
         {
             
-            card.SetFanPai();
+            card.SetFlip();
             
             FaceCards.Add(card);
             
@@ -81,6 +81,9 @@ public class Card_GameManager : MonoBehaviour
             }
         }
     }
+
+
+  
 
     IEnumerator JugdeTwoCards()
     {
@@ -100,10 +103,11 @@ public class Card_GameManager : MonoBehaviour
             score++;
             scoreGT.text = "Matches: " + score.ToString();
 
-            if (curCardCouples == winCardCouples)
+            if (curCardCouples == winCardCouples - 1)
             {
                 //winning text
-                Debug.Log("Win!");
+                Debug.Log("End!");
+                endFade.SetActive(true);
             }
         }
         else
